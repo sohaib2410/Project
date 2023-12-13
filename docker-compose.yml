@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  appointments-service:
+    image: sohaib2410/appointments-service
+    ports:
+      - "7070:7070"
+    networks:
+      - my_network
+
+  doctors-service:
+    image: sohaib2410/doctors-service
+    ports:
+      - "9090:9090"
+    networks:
+      - my_network
+
+  frontend-service:
+    image: sohaib2410/frontend-service:v1
+    environment:
+      - APPOINTMENTS_SERVICE_URL=appointments-service:7070
+      - DOCTORS_SERVICE_URL=doctors-service:9090
+    ports:
+      - "3000:3000"
+    networks:
+      - my_network
+
+
+networks:
+  my_network:
+    driver: bridge
