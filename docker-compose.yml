@@ -2,14 +2,14 @@ version: '3'
 
 services:
   appointments-service:
-    image: sohaib2410/appointments-service
+    image: sohaib2410/appointments-service:v1
     ports:
       - "7070:7070"
     networks:
       - my_network
 
   doctors-service:
-    image: sohaib2410/doctors-service
+    image: sohaib2410/doctors-service:v1
     ports:
       - "9090:9090"
     networks:
