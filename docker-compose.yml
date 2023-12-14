@@ -2,21 +2,21 @@ version: '3'
 
 services:
   appointments-service:
-    image: sohaib2410/appointments-service:v1
+    image: sohaib2410/appointments-service:${{ github.sha }}
     ports:
       - "7070:7070"
     networks:
       - my_network
 
   doctors-service:
-    image: sohaib2410/doctors-service:v1
+    image: sohaib2410/doctors-service:${{ github.sha }}
     ports:
       - "9090:9090"
     networks:
       - my_network
 
   frontend-service:
-    image: sohaib2410/frontend-service:v1
+    image: sohaib2410/frontend-service:${{ github.sha }}
     environment:
       - APPOINTMENTS_SERVICE_URL=appointments-service:7070
       - DOCTORS_SERVICE_URL=doctors-service:9090
