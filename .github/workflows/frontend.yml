@@ -29,3 +29,10 @@ jobs:
           docker build -t sohaib2410/frontend-service:${{ github.sha }} ./frontend
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           docker push sohaib2410/frontend-service:${{ github.sha }}
+
+      - name: Update Compose Image Tag
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: |
+          chmod +x ../../scripts/update-compose-frontend.sh  
+          ../../scripts/update-compose-frontend.sh

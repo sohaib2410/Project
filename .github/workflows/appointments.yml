@@ -29,3 +29,20 @@ jobs:
           docker build -t sohaib2410/appointments-service:${{ github.sha }} ./appointments
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           docker push sohaib2410/appointments-service:${{ github.sha }}
+
+      # Update Image Tag in docker-compose
+      - name: Update Compose Image Tag
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: |
+          chmod +x ../../scripts/update-compose-appointments.sh  
+          ../../scripts/update-compose-appointments.sh  
+
+      # Commit and Push changes to GitHub (docker-compose.yml)
+      - name: Commit and Push Compose Changes
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add ./docker-compose.yml
+          git commit -m "Appointments CI/CD: Update docker-compose.yml with new image tag"
+          git push origin main
