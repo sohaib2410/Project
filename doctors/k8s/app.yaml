@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doctors-deployment
+  labels:
+    app: doctors
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: doctors
+  template:
+    metadata:
+      labels:
+        app: doctors
+    spec:
+      containers:
+        - name: doctors
+          image: sohaib2410/doctors-service:v1
+          ports:
+            - containerPort: 9090
+          env:
+            - name: SERVICE_URL
+              value: "http://doctors-service:9090"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: doctors-service
+spec:
+  selector:
+    app: doctors
+  ports:
+    - protocol: TCP
+      port: 9090
+      targetPort: 9090

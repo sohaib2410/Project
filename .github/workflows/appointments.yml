@@ -42,12 +42,12 @@ jobs:
 
 
       # Commit and Push changes to GitHub (docker-compose.yml)
-      - name: Commit and Push Compose Changes
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add ./docker-compose.yml
-          git commit -m "Appointments CI/CD: Update docker-compose.yml with new image tag"
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Commit and Push Compose Changes
+ #       run: |
+  #        git config --local user.email "actions@github.com"
+   #       git config --local user.name "GitHub Actions"
+    #      git add ./docker-compose.yml
+     #     git commit -m "Appointments CI/CD: Update docker-compose.yml with new image tag"
+      #    git push origin main
+       # env:
+        #  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
