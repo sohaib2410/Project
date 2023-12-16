@@ -22,6 +22,25 @@ spec:
           env:
             - name: SERVICE_URL
               value: "http://appointments-service:7070"
+          resources:
+            requests:
+              memory: "64Mi"   # Requested memory
+              cpu: "250m"      # Requested CPU
+            limits:
+              memory: "128Mi"  # Maximum memory limit
+              cpu: "500m"      # Maximum CPU limit
+          readinessProbe:
+            httpGet:
+              path: /healthz    # Endpoint to check for readiness
+              port: 7070        # Port to check
+            initialDelaySeconds: 5  # Delay before first check
+            periodSeconds: 10        # Check every 10 seconds
+          livenessProbe:
+            httpGet:
+              path: /healthz    # Endpoint to check for liveness
+              port: 7070        # Port to check
+            initialDelaySeconds: 15 # Delay before first check
+            periodSeconds: 20       # Check every 20 seconds
 ---
 apiVersion: v1
 kind: Service
