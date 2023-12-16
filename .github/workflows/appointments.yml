@@ -35,8 +35,11 @@ jobs:
         env:
           GITHUB_SHA: ${{ github.sha }}
         run: |
-          chmod +x ../../scripts/update-compose-appointments.sh  
-          ../../scripts/update-compose-appointments.sh  
+          chmod +x scripts/update-compose-appointments.sh
+          scripts/update-compose-appointments.sh  
+
+          
+
 
       # Commit and Push changes to GitHub (docker-compose.yml)
       - name: Commit and Push Compose Changes

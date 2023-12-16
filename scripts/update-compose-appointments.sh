@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory where the docker-compose.yml file is located
-COMPOSE_FILE="../docker-compose.yml"  # Updated to specify the file path
+COMPOSE_FILE="docker-compose.yml"  # Updated to specify the file path
 
 # Assign the SHA from GitHub to a variable
 SHA_TAG=${GITHUB_SHA}
